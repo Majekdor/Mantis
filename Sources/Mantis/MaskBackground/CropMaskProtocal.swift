@@ -30,8 +30,13 @@ extension CropMaskProtocol {
     private func setInitialFrame() {
         let width = initialFrameLength
         let height = initialFrameLength
+        #if os(visionOS)
+        let screenWidth = 400.0
+        let screenHeight = 800.0
+        #else
         let screenWidth = UIScreen.main.bounds.width
         let screenHeight = UIScreen.main.bounds.height
+        #endif
         
         let originX = (screenWidth - width) / 2
         let originY = (screenHeight - height) / 2

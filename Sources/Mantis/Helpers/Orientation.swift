@@ -8,11 +8,15 @@ import UIKit
 
 public struct Orientation {
     static var interfaceOrientation: UIInterfaceOrientation {
+        #if os(visionOS)
+        return UIInterfaceOrientation.portrait
+        #else
         if #available(iOS 13, macOS 10.13, *) {
             return application.windows.first?.windowScene?.interfaceOrientation ?? .portrait
         } else {
             return application.statusBarOrientation
         }
+        #endif
     }
         
     private static var application: UIApplication { .shared }

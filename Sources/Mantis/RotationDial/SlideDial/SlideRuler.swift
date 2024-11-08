@@ -211,8 +211,10 @@ extension SlideRuler: UIScrollViewDelegate {
                 isReset = true
                 
                 if forceAlignCenterFeedback {
+                    #if !os(visionOS)
                     let generator = UIImpactFeedbackGenerator(style: .medium)
                     generator.impactOccurred()
+                    #endif
                 }
                 
                 func forceAlignCenter() {
